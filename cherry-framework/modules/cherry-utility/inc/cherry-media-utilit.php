@@ -87,10 +87,12 @@ if ( ! class_exists( 'Cherry_Media_Utilit' ) ) {
 
 				if ( $thumbnail_id ) {
 					$image_data = wp_get_attachment_image_src( $thumbnail_id, $size );
-					$src        = $image_data[0];
+                    if (false !== $image_data) {
+                        $src        = $image_data[0];
 
-					$size_array['width']  = $image_data[1];
-					$size_array['height'] = $image_data[2];
+                        $size_array['width']  = $image_data[1];
+                        $size_array['height'] = $image_data[2];
+                    }
 
 				} elseif ( filter_var( $args['placeholder'], FILTER_VALIDATE_BOOLEAN ) ) {
 					$title = ( $args['placeholder_title'] ) ? $args['placeholder_title'] : $size_array['width'] . 'x' . $size_array['height'];
